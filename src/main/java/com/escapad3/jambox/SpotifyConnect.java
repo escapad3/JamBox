@@ -9,12 +9,14 @@ import com.wrapper.spotify.requests.authorization.authorization_code.Authorizati
 import com.wrapper.spotify.requests.authorization.authorization_code.AuthorizationCodeRequest;
 import com.wrapper.spotify.requests.authorization.authorization_code.AuthorizationCodeUriRequest;
 import com.wrapper.spotify.requests.data.users_profile.GetCurrentUsersProfileRequest;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.wrapper.spotify.model_objects.specification.Paging;
+import com.wrapper.spotify.model_objects.specification.Track;
+import com.wrapper.spotify.requests.data.search.simplified.SearchTracksRequest;
+
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.net.URI;
@@ -127,6 +129,19 @@ public class SpotifyConnect {
         } catch (IOException | SpotifyWebApiException e) {
 //            return "Error: " + e.getMessage();
             return null;
+        }
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/search")
+    public void searchSongs(@RequestParam("searchBox") String q){
+        final SearchTracksRequest searchTracksRequest = spotifyApi.searchTracks(q).build();
+        try {
+            final Paging<Track> trackPaging = searchTracksRequest.execute();
+
+            System.out.println("Total: " + trackPaging.getTotal());
+        } catch (IOException | SpotifyWebApiException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
