@@ -98,7 +98,6 @@ public class SpotifyConnect {
             spotifyApi.setRefreshToken(authorizationCodeCredentials.getRefreshToken());
 
             timestampTimer = currentDate.getTime() + (1000 * authorizationCodeCredentials.getExpiresIn());
-
 //            System.out.println("Expires in: " + authorizationCodeCredentials.getExpiresIn());
         } catch (IOException | SpotifyWebApiException e) {
 //            System.out.println("Error: " + e.getMessage());
