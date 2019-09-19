@@ -134,15 +134,14 @@ public class SpotifyConnect {
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/search")
-    public void searchSongs(@RequestParam("searchBox") String q){
+    public Track[] searchSongs(@RequestParam("searchBox") String q){
         final SearchTracksRequest searchTracksRequest = spotifyApi.searchTracks(q).build();
         try {
             final Paging<Track> trackPaging = searchTracksRequest.execute();
-
-            System.out.println("Total: " + trackPaging.getTotal());
+            return trackPaging.getItems();
         } catch (IOException | SpotifyWebApiException e) {
             System.out.println("Error: " + e.getMessage());
         }
+        return new Track[0];
     }
-
 }
