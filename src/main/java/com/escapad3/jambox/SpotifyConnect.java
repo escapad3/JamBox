@@ -25,7 +25,9 @@ import java.util.Date;
 @RestController
 public class SpotifyConnect {
 //    String clientAppCallbackUrl = "http://localhost:8090/callback/";
-    String clientAppCallbackUrl = "http://localhost:3000/callback/";
+//    String clientAppCallbackUrl = "http://localhost:3000/callback/";
+    String clientAppCallbackUrl = "https://jamplayer.herokuapp.com/callback/";
+
     private static final String clientId = System.getenv("SPOTIFY_CLIENT_ID");
     private static final String clientSecret = System.getenv("SPOTIFY_CLIENT_SECRET");
     private static final String spotifyRedirectUri = System.getenv("SPOTIFY_REDIRECT_URI");
