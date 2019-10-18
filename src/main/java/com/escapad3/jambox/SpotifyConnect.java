@@ -166,10 +166,10 @@ public class SpotifyConnect {
         final GetUsersSavedTracksRequest getUsersSavedTracksRequest = spotifyApi.getUsersSavedTracks().build();
         try {
             final Paging<SavedTrack> savedTrackPaging = getUsersSavedTracksRequest.execute();
-            int total = savedTrackPaging.getTotal();
+            int total = savedTrackPaging.getLimit();
             Track[] savedSongs = new Track[total];
             SavedTrack[] songsList = savedTrackPaging.getItems();
-            for (int i = 0; i < total-1; i++) {
+            for (int i = 0; i < total; i++) {
                 savedSongs[i] = songsList[i].getTrack();
             }
             return savedSongs;
