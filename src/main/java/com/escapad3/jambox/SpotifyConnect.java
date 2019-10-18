@@ -40,7 +40,7 @@ public class SpotifyConnect {
             .build();
     //          .state("x4xkmn9pu3j6ukrs8n")
     private static final AuthorizationCodeUriRequest authorizationCodeUriRequest = spotifyApi.authorizationCodeUri()
-            .scope("user-read-birthdate,user-read-email")
+            .scope("user-read-birthdate,user-read-email,user-library-read")
 //            .show_dialog(true)
             .build();
 
