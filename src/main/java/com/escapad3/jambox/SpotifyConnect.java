@@ -159,5 +159,6 @@ public class SpotifyConnect {
         } catch (IOException | SpotifyWebApiException e) {
             System.out.println("Error: " + e.getMessage());
         }
+        return new PlaylistSimplified[0];
     }
 }
