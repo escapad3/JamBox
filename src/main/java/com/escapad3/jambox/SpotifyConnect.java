@@ -169,7 +169,7 @@ public class SpotifyConnect {
             int total = savedTrackPaging.getTotal();
             Track[] savedSongs = new Track[total];
             SavedTrack[] songsList = savedTrackPaging.getItems();
-            for (int i = 0; i < total; i++) {
+            for (int i = 0; i < total-1; i++) {
                 savedSongs[i] = songsList[i].getTrack();
             }
             return savedSongs;
