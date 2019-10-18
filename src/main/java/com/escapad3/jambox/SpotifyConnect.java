@@ -162,14 +162,19 @@ public class SpotifyConnect {
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/collection")
-    public SavedTrack[] userCollection(){
+    public Track[] userCollection(){
         final GetUsersSavedTracksRequest getUsersSavedTracksRequest = spotifyApi.getUsersSavedTracks().build();
         try {
             final Paging<SavedTrack> savedTrackPaging = getUsersSavedTracksRequest.execute();
-            return savedTrackPaging.getItems();
+            Track[] savedSongs = new Track[savedTrackPaging.getTotal()];
+            SavedTrack[] songsList = savedTrackPaging.getItems();
+            for (int i = 0; i < savedTrackPaging.getTotal(); i++) {
+                savedSongs[i] = songsList[i].getTrack();
+            }
+            return savedSongs;
         } catch (IOException | SpotifyWebApiException e) {
             System.out.println("Error: " + e.getMessage());
         }
-        return new SavedTrack[0];
+        return new Track[0];
     }
 }
